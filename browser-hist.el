@@ -27,6 +27,9 @@
 (require 'subr-x)
 (require 'browse-url)
 
+(declare-function sqlite-query "sqlite")
+(declare-function sqlite-init "sqlite")
+
 (defgroup browser-hist nil
   "browser-hist group"
   :prefix "browser-hist-"
@@ -142,6 +145,7 @@ db, we copy the file."
   "Remove title from TARGET url appended by `browser-hist-search'"
   (browse-url (replace-regexp-in-string "\t.*" "" url)))
 
+;;;###autoload
 (defun browser-hist-search ()
   "Search through browser history."
   (interactive)
@@ -170,4 +174,5 @@ db, we copy the file."
                      (completing-read "Browser history: "))))
     (browse-url selected)))
 
+(provide 'browser-hist)
 ;;; browser-hist.el ends here
